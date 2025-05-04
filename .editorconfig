@@ -1,0 +1,19 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# 适用于所有文件类型
+[*]
+# 文件编码
+charset = utf-8
+# 缩进风格（tab | space）
+indent_style = space
+# 缩进大小
+indent_size = 2
+# 换行符（lf | cr | crlf）
+end_of_line = lf
+# 去除行尾多余空格
+trim_trailing_whitespace = true
+# 文件末尾插入空行
+insert_final_newline = true
