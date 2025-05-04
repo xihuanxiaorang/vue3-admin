@@ -2,6 +2,7 @@
   "recommendations": [
     "Vue.volar",
     "dbaeumer.vscode-eslint",
-    "maggie.eslint-rules-zh-plugin"
+    "maggie.eslint-rules-zh-plugin",
+    "esbenp.prettier-vscode"
   ]
 }
