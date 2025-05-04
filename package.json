@@ -11,7 +11,8 @@
     "lint:fix": "eslint . --fix",
     "lint:strict": "eslint . --quiet",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "dependencies": {
     "vue": "^3.5.13"
@@ -25,6 +26,7 @@
     "eslint-plugin-prettier": "^5.2.6",
     "eslint-plugin-vue": "^10.1.0",
     "globals": "^16.0.0",
+    "husky": "^9.1.7",
     "prettier": "^3.5.3",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.31.1",
