@@ -64,6 +64,8 @@ export default defineConfig([
       'vue/attributes-order': 'warn',
       // 关闭 Vue HTML 缩进规则（交给 Prettier 等工具处理）
       'vue/html-indent': 'off',
+      // 关闭 Vue 组件名必须为多词的限制（适用于如 Home.vue、Login.vue 等常见页面组件命名）
+      'vue/multi-word-component-names': 'off',
     },
   },
   // 引入 Prettier 推荐配置（关闭 ESLint 格式冲突规则 + 启用 prettier 检查）
