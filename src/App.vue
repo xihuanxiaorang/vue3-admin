@@ -1,15 +1,17 @@
 <template>
-  <RouterLink to="/home">首页</RouterLink>
+  <router-link to="/home">首页</router-link>
   |
-  <RouterLink to="/about">关于</RouterLink>
+  <router-link to="/about">关于</router-link>
 
   <div>
-    <RouterView />
+    <router-view></router-view>
   </div>
 
-  <button @click="decrement">-1</button>
+  <el-button-group>
+    <el-button type="danger" size="small" @click="decrement">-1</el-button>
+    <el-button type="primary" size="small" @click="increment">+1</el-button>
+  </el-button-group>
   {{ count }}
-  <button @click="increment">+1</button>
 </template>
 
 <script setup lang="ts">
