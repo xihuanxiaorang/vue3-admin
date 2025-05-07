@@ -4,6 +4,7 @@ import { defineConfig } from 'eslint/config' // 用于类型安全地定义 ESLi
 import globals from 'globals' // 浏览器 & Node 全局变量定义
 import tseslint from 'typescript-eslint' // TypeScript ESLint 支持插件，含推荐规则与专用解析器
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended' // Prettier 推荐规则集
+import unocss from '@unocss/eslint-config/flat' // UnoCSS 官方 ESLint Flat 模式规则集（包含原子类顺序和 attributify 属性顺序校验等）
 
 export default defineConfig([
   {
@@ -44,7 +45,12 @@ export default defineConfig([
       '**/*.d.ts',
     ],
   },
+  // 引入 Prettier 推荐配置（关闭 ESLint 格式冲突规则 + 启用 prettier 检查）
+  eslintPluginPrettierRecommended,
+  // 引入 UnoCSS ESLint 插件（默认启用 order/order-attributify）
+  unocss,
   {
+    // 自定义规则
     rules: {
       // 变量声明未使用则发出警告（可帮助清理无效代码）
       'no-unused-vars': 'warn',
@@ -68,6 +74,4 @@ export default defineConfig([
       'vue/multi-word-component-names': 'off',
     },
   },
-  // 引入 Prettier 推荐配置（关闭 ESLint 格式冲突规则 + 启用 prettier 检查）
-  eslintPluginPrettierRecommended,
 ])
