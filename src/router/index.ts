@@ -1,16 +1,21 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import Layout from '@/layout/index.vue'
 
 /**
  * 静态路由表
  */
 const routes: RouteRecordRaw[] = [
   {
-    path: '/home',
-    component: () => import('@/views/Home.vue'),
-  },
-  {
-    path: '/about',
-    component: () => import('@/views/About.vue'),
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard/index.vue'),
+      },
+    ],
   },
 ]
 

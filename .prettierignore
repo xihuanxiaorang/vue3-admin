@@ -1,0 +1,9 @@
+# 忽略依赖锁文件
+pnpm-lock.yaml
+
+# 忽略打包输出目录
+dist
+
+# 忽略构建配置和临时缓存
+node_modules
+.cache
