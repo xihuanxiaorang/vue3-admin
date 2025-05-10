@@ -72,6 +72,8 @@ export default defineConfig([
       'vue/html-indent': 'off',
       // 关闭 Vue 组件名必须为多词的限制（适用于如 Home.vue、Login.vue 等常见页面组件命名）
       'vue/multi-word-component-names': 'off',
+      // 关闭未定义变量检查（TypeScript 会自行处理未声明变量的报错）
+      'no-undef': 'off',
     },
   },
 ])

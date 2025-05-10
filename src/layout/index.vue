@@ -30,7 +30,7 @@
       }
     }
     .content-container {
-      @apply h-[calc(100vh-var(--navbar-height)-var(--tags-view-height))] bg-cyan;
+      @apply h-[calc(100vh-var(--navbar-height)-var(--tags-view-height))] bg-gray-100 p-2;
     }
   }
 }
