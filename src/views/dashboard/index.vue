@@ -29,9 +29,21 @@
     <IEpMapLocation h-48px w-48px text-red />
     <IEpSetting text-5xl text-cyan />
   </div>
+
+  <div class="mb-4">
+    <svg-icon
+      v-for="iconName in iconNames"
+      :key="iconName"
+      :icon-name="iconName"
+      text-5xl
+      text-purple
+    ></svg-icon>
+  </div>
 </template>
 
 <script setup lang="ts">
+import iconNames from 'virtual:svg-icons-names'
+
 const open1 = () => {
   ElMessage('This is a message.')
 }

@@ -5,6 +5,7 @@ import { createPinia } from 'pinia'
 import 'virtual:uno.css'
 import 'normalize.css/normalize.css'
 import '@/styles/index.scss'
+import 'virtual:svg-icons-register'
 
 const app = createApp(App)
 
