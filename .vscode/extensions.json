@@ -5,6 +5,7 @@
     "maggie.eslint-rules-zh-plugin",
     "esbenp.prettier-vscode",
     "editorconfig.editorconfig",
-    "antfu.unocss"
+    "antfu.unocss",
+    "antfu.iconify"
   ]
 }

@@ -23,6 +23,12 @@
     <el-button :plain="true" @click="open1">Message</el-button>
     <el-button :plain="true" @click="open4">Error</el-button>
   </div>
+
+  <div class="mb-4">
+    <IEpAddLocation />
+    <IEpMapLocation h-48px w-48px text-red />
+    <IEpSetting text-5xl text-cyan />
+  </div>
 </template>
 
 <script setup lang="ts">

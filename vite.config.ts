@@ -5,6 +5,8 @@ import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -21,17 +23,30 @@ export default defineConfig({
       resolvers: [
         // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
         ElementPlusResolver(),
+        // 自动导入图标组件
+        IconsResolver(),
       ],
       // 指定哪些目录下的文件需要被扫描，并自动导入这些文件中导出的函数、变量等
       dirs: ['src/composables/**'],
     }),
     Components({
       resolvers: [
-        // 自动导入 Element Plus 组件
+        // 自动注册 Element Plus 组件
         ElementPlusResolver(),
+        // 自动注册图标组件
+        IconsResolver({
+          // 限定启用指定图标集（可选）
+          // 若启用多个图标集，可设置为 ['ep', 'mdi', 'tabler'] 等
+          // 不指定时默认启用所有已安装图标集
+          enabledCollections: ['ep'],
+        }),
       ],
       // 指定自定义组件位置
       dirs: ['src/**/components'],
+    }),
+    Icons({
+      // 启用图标集自动安装
+      autoInstall: true,
     }),
   ],
   resolve: {
