@@ -3,7 +3,6 @@ import App from './App.vue'
 import router from '@/router'
 import { createPinia } from 'pinia'
 import 'virtual:uno.css'
-import 'normalize.css/normalize.css'
 import '@/styles/index.scss'
 import 'virtual:svg-icons-register'
 
