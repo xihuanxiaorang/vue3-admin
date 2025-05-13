@@ -30,6 +30,8 @@ export default defineConfig({
       ],
       // 指定哪些目录下的文件需要被扫描，并自动导入这些文件中导出的函数、变量等
       dirs: ['src/composables/**'],
+      // 指定生成的类型声明文件路径
+      dts: 'src/types/auto-imports.d.ts',
     }),
     Components({
       resolvers: [
@@ -45,6 +47,8 @@ export default defineConfig({
       ],
       // 指定自定义组件位置
       dirs: ['src/**/components'],
+      // 指定生成的类型声明文件路径
+      dts: 'src/types/components.d.ts',
     }),
     Icons({
       // 启用图标集自动安装
