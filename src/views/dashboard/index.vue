@@ -39,10 +39,20 @@
       text-purple
     ></svg-icon>
   </div>
+
+  <div class="mb-4">
+    <el-input-number v-model="count" :min="1" :max="10" @change="handleChange" />
+  </div>
 </template>
 
 <script setup lang="ts">
 import iconNames from 'virtual:svg-icons-names'
+import { useCounterStore } from '@/stores/counter'
+
+const { count } = storeToRefs(useCounterStore())
+const handleChange = (value: number | undefined) => {
+  count.value = value
+}
 
 const open1 = () => {
   ElMessage('This is a message.')

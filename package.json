@@ -15,6 +15,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@vueuse/core": "^13.1.0",
     "element-plus": "^2.9.9",
     "normalize.css": "^8.0.1",
     "pinia": "^3.0.2",
