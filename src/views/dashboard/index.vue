@@ -31,17 +31,23 @@
   </div>
 
   <div class="mb-4">
-    <svg-icon
+    <SvgIcon
       v-for="iconName in iconNames"
       :key="iconName"
       :icon-name="iconName"
       text-5xl
       text-purple
-    ></svg-icon>
+    ></SvgIcon>
   </div>
 
   <div class="mb-4">
     <el-input-number v-model="count" :min="1" :max="10" @change="handleChange" />
+  </div>
+
+  <div
+    class="mb-4 h-100px w-150px flex items-center justify-center rounded-lg bg-gray-300 dark:bg-gray-700"
+  >
+    <DarkModeSelect />
   </div>
 </template>
 
