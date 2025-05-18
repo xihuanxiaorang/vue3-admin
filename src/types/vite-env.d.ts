@@ -13,3 +13,18 @@ declare module 'virtual:svg-icons-names' {
   const iconsNames: string[]
   export default iconsNames
 }
+
+interface ViteTypeOptions {
+  // 启用严格模式，禁止访问未声明的环境变量
+  strictImportMetaEnv: unknown
+}
+
+interface ImportMetaEnv {
+  readonly VITE_APP_TITLE: string
+  readonly VITE_APP_PORT: number
+  // 更多环境变量...
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
