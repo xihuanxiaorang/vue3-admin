@@ -10,9 +10,10 @@ import Icons from 'unplugin-icons/vite'
 import path from 'node:path'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { processEnv } from './vite/util'
+import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command }) => {
   const env = processEnv(loadEnv(mode, './env'))
   return {
     plugins: [
@@ -69,6 +70,12 @@ export default defineConfig(({ mode }) => {
         // - [name] 表示图标文件名
         // 最终生成的 ID 形如：icon-user 或 icon-folder-user
         symbolId: 'icon-[dir]-[name]',
+      }),
+      viteMockServe({
+        // 指定 mock 接口文件所在目录
+        mockPath: 'mock',
+        // 仅在开发环境下启用 Mock 功能
+        enable: command !== 'build',
       }),
     ],
     resolve: {
