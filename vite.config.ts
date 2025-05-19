@@ -9,12 +9,11 @@ import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 import path from 'node:path'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import { processEnv } from './vite/util'
 import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode, command }) => {
-  const env = processEnv(loadEnv(mode, './env'))
+  const env = loadEnv(mode, './env')
   return {
     plugins: [
       vue(),
