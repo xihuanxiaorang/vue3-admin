@@ -74,10 +74,6 @@ class Http {
    * Axios 实例对象，封装所有请求的基础配置
    */
   private readonly axiosInstance: AxiosInstance
-  /**
-   * 全局 loading 控制器，用于统一管理请求 loading 状态
-   */
-  private readonly loadingControl = useGlobalLoading()
 
   constructor() {
     this.axiosInstance = axios.create({
@@ -96,11 +92,6 @@ class Http {
        * @property Content-Type - 默认使用 JSON 格式
        */
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
-      /**
-       * 自定义扩展配置：是否显示全局 loading
-       * @default true - 可通过请求配置覆盖
-       */
-      showLoading: true,
     })
     // 设置请求和响应拦截器
     this.setupInterceptors()
@@ -117,10 +108,6 @@ class Http {
         const token = localStorage.getItem(ACCESS_TOKEN)
         if (token) {
           config.headers.Authorization = `Bearer ${token}`
-        }
-
-        if (config.showLoading) {
-          this.loadingControl.show()
         }
 
         return config
@@ -147,11 +134,6 @@ class Http {
   private handleSuccessResponse(response: AxiosResponse<Result>) {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
-    const config = response.config
-    if (config.showLoading) {
-      this.loadingControl.hide()
-    }
-
     if (this.isBinaryResponse(response)) {
       return response
     }
@@ -173,11 +155,6 @@ class Http {
   private handleErrorResponse(error: any) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
-    const config = error.config as AxiosRequestConfig
-    if (config?.showLoading) {
-      this.loadingControl.hide()
-    }
-
     if (axios.isCancel(error)) {
       return Promise.reject(new Error('请求被取消'))
     }

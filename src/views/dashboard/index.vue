@@ -44,16 +44,16 @@
     <el-input-number v-model="count" :min="1" :max="10" @change="handleChange" />
   </div>
 
-  <div
-    class="mb-4 h-100px w-150px flex items-center justify-center rounded-lg bg-gray-300 dark:bg-gray-700"
-  >
-    <DarkModeSelect />
-  </div>
+  <div class="mb-4 flex gap-4">
+    <div class="box">
+      <DarkModeSelect />
+    </div>
 
-  <div class="mb-4">
-    <el-avatar :src="userInfo?.avatar">
-      <SvgIcon icon-name="user" />
-    </el-avatar>
+    <div v-loading="isLoading" class="box">
+      <el-avatar :src="userInfo?.avatar">
+        <SvgIcon icon-name="user" />
+      </el-avatar>
+    </div>
   </div>
 </template>
 
@@ -61,11 +61,10 @@
 import iconNames from 'virtual:svg-icons-names'
 import { useCounterStore } from '@/stores/counter'
 import { userApi } from '@/api'
-import type { UserInfo } from '@/api/types'
 
 const { count } = storeToRefs(useCounterStore())
 const handleChange = (value: number | undefined) => {
-  count.value = value
+  count.value = value ?? 1
 }
 
 const open1 = () => {
@@ -87,9 +86,11 @@ const open4 = () => {
   ElMessage.error('Oops, this is a error message.')
 }
 
-const userInfo = ref<UserInfo>()
-
-onMounted(async () => {
-  userInfo.value = await userApi.getUserInfo()
-})
+const { isLoading, state: userInfo } = useAsyncState(userApi.getUserInfo, null)
 </script>
+
+<style lang="scss" scoped>
+.box {
+  @apply h-100px w-150px flex items-center justify-center rounded-lg bg-gray-300 dark:bg-gray-700;
+}
+</style>
