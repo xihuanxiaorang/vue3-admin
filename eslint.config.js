@@ -74,6 +74,8 @@ export default defineConfig([
       'vue/multi-word-component-names': 'off',
       // 关闭未定义变量检查（TypeScript 会自行处理未声明变量的报错）
       'no-undef': 'off',
+      // 关闭 TypeScript any 类型警告
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 ])

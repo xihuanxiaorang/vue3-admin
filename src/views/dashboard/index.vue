@@ -49,11 +49,19 @@
   >
     <DarkModeSelect />
   </div>
+
+  <div class="mb-4">
+    <el-avatar :src="userInfo?.avatar">
+      <SvgIcon icon-name="user" />
+    </el-avatar>
+  </div>
 </template>
 
 <script setup lang="ts">
 import iconNames from 'virtual:svg-icons-names'
 import { useCounterStore } from '@/stores/counter'
+import { userApi } from '@/api'
+import type { UserInfo } from '@/api/types'
 
 const { count } = storeToRefs(useCounterStore())
 const handleChange = (value: number | undefined) => {
@@ -78,4 +86,10 @@ const open3 = () => {
 const open4 = () => {
   ElMessage.error('Oops, this is a error message.')
 }
+
+const userInfo = ref<UserInfo>()
+
+onMounted(async () => {
+  userInfo.value = await userApi.getUserInfo()
+})
 </script>

@@ -97,6 +97,18 @@ export default defineConfig(({ mode }) => {
       cors: true,
       // 启用热模块替换（Hot Module Replacement）
       hmr: true,
+      // 代理配置对象，用于开发服务器请求转发
+      proxy: {
+        // 将请求路径以 VITE_APP_BASE_API 开头的请求，代理到后端 API 地址
+        [env.VITE_APP_BASE_API]: {
+          // 目标服务器地址，需要代理到的后端 API 地址
+          target: env.VITE_APP_API_URL,
+          // 是否修改请求源，设置为 true 以正确传递跨域 Cookie
+          changeOrigin: true,
+          // 重写路径，将请求路径的前缀替换为空
+          rewrite: (path) => path.replace(new RegExp('^' + env.VITE_APP_BASE_API), ''),
+        },
+      },
     },
   }
 })
