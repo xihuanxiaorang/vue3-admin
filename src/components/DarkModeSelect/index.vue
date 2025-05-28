@@ -1,15 +1,16 @@
 <template>
-  <el-icon class="cursor-pointer" @click="toggle">
+  <el-icon :size="iconSize" class="cursor-pointer" @click="toggle">
     <template v-if="mode === 'dark'">
       <i-ep-moon />
     </template>
-    <template v-else-if="mode === 'light'">
+    <template v-else>
       <i-ep-sunny />
     </template>
   </el-icon>
 </template>
 
 <script setup lang="ts">
+const { iconSize = 30 } = defineProps<{ iconSize?: number }>()
 const mode = useColorMode()
 const isSystemDark = usePreferredDark()
 

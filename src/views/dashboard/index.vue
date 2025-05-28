@@ -54,6 +54,10 @@
         <SvgIcon icon-name="user" />
       </el-avatar>
     </div>
+
+    <div class="box">
+      <FullScreen />
+    </div>
   </div>
 
   <div class="grid grid-cols-2 mb-4 h-100 gap-6">
