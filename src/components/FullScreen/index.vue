@@ -11,5 +11,5 @@
 
 <script setup lang="ts">
 const { isFullscreen, toggle } = useFullscreen()
-const { iconSize = 30 } = defineProps<{ iconSize?: number }>()
+const { iconSize = 25 } = defineProps<{ iconSize?: number }>()
 </script>

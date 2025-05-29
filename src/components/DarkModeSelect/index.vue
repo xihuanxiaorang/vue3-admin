@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-const { iconSize = 30 } = defineProps<{ iconSize?: number }>()
+const { iconSize = 25 } = defineProps<{ iconSize?: number }>()
 const mode = useColorMode()
 const isSystemDark = usePreferredDark()
 

@@ -3,7 +3,9 @@
     <div class="sidebar-container">侧边导航栏</div>
     <div class="main-wrapper">
       <div class="header-container">
-        <div class="navbar">顶部导航栏</div>
+        <div class="navbar">
+          <Navbar />
+        </div>
         <div class="tags-view">标签导航栏</div>
       </div>
       <div class="content-container">
