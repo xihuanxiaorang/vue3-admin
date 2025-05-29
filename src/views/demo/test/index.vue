@@ -51,8 +51,8 @@
 </template>
 
 <script setup lang="ts">
+import { useCounterStore } from '@/stores'
 import iconNames from 'virtual:svg-icons-names'
-import { useCounterStore } from '@/stores/counter'
 
 const { count } = storeToRefs(useCounterStore())
 const handleChange = (value: number | undefined) => {

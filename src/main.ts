@@ -1,14 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from '@/router'
-import { createPinia } from 'pinia'
-import 'virtual:uno.css'
+import { setupPlugins } from '@/plugins'
 import '@/styles/index.scss'
+import 'virtual:uno.css'
 import 'virtual:svg-icons-register'
 
 const app = createApp(App)
-
-app.use(router)
-app.use(createPinia())
-
+setupPlugins(app)
 app.mount('#app')

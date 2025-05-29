@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import Layout from '@/layout/index.vue'
+import type { App } from 'vue'
 
 /**
  * 静态路由表
@@ -34,7 +35,7 @@ const routes: RouteRecordRaw[] = [
 /**
  * 创建路由实例
  */
-export default createRouter({
+const router = createRouter({
   // 路由模式
   history: createWebHistory(import.meta.env.BASE_URL),
   // 路由表
@@ -42,3 +43,13 @@ export default createRouter({
   // 刷新时，滚动条位置还原
   scrollBehavior: () => ({ left: 0, top: 0 }),
 })
+
+/**
+ * 注册路由插件
+ * @param app Vue实例
+ */
+export function setupRouter(app: App) {
+  app.use(router)
+}
+
+export default router
