@@ -47,7 +47,7 @@ export default defineConfig(({ mode }) => {
             // 限定启用指定图标集（可选）
             // 若启用多个图标集，可设置为 ['ep', 'mdi', 'tabler'] 等
             // 不指定时默认启用所有已安装图标集
-            enabledCollections: ['ep'],
+            enabledCollections: ['mdi'],
           }),
         ],
         // 指定自定义组件位置

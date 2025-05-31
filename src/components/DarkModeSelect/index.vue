@@ -1,10 +1,10 @@
 <template>
   <el-icon :size="iconSize" class="cursor-pointer" @click="toggle">
     <template v-if="mode === 'dark'">
-      <i-ep-moon />
+      <IMdiMoonAndStars />
     </template>
     <template v-else>
-      <i-ep-sunny />
+      <IMdiWhiteBalanceSunny />
     </template>
   </el-icon>
 </template>

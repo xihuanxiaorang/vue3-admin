@@ -1,10 +1,10 @@
 <template>
   <el-icon :size="iconSize" class="cursor-pointer" @click="toggle">
     <template v-if="isFullscreen">
-      <SvgIcon icon-name="fullscreen-exit" />
+      <IMdiFullscreenExit />
     </template>
     <template v-else>
-      <SvgIcon icon-name="fullscreen" />
+      <IMdiFullscreen />
     </template>
   </el-icon>
 </template>

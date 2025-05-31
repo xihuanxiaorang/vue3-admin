@@ -28,7 +28,7 @@
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
     "@eslint/js": "^9.25.1",
-    "@iconify-json/ep": "^1.2.2",
+    "@iconify-json/mdi": "^1.2.3",
     "@unocss/eslint-config": "^66.1.0",
     "@vitejs/plugin-vue": "^5.2.2",
     "@vue/tsconfig": "^0.7.0",

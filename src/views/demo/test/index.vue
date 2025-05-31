@@ -24,10 +24,10 @@
     <el-button :plain="true" @click="open4">Error</el-button>
   </div>
 
-  <div class="mb-4">
-    <IEpAddLocation />
-    <IEpMapLocation h-48px w-48px text-red />
-    <IEpSetting text-5xl text-cyan />
+  <div class="mb-4 flex items-center">
+    <IMdiLocation />
+    <IMdiMapMarkerRadius h-48px w-48px text-red />
+    <IMdiSettings text-5xl text-cyan />
   </div>
 
   <div class="mb-4">
