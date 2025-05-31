@@ -48,6 +48,25 @@
     <span class="text-xl text-red">{{ t('hello') }}</span>
   </div>
 
+  <div class="box2 mb-4">
+    <el-date-picker
+      class="mb-5"
+      type="datetimerange"
+      :start-placeholder="t('common.startDate')"
+      :end-placeholder="t('common.endDate')"
+      format="YYYY-MM-DD HH:mm:ss"
+      date-format="YYYY/MM/DD ddd"
+      time-format="A hh:mm:ss"
+    />
+    <el-pagination
+      :default-current-page="1"
+      :default-page-size="10"
+      :background="true"
+      layout="prev, pager, next, jumper"
+      :total="1000"
+    />
+  </div>
+
   <div class="grid grid-cols-2 mb-4 h-100 gap-6">
     <div ref="barChart"></div>
     <div ref="pieChart"></div>
@@ -200,5 +219,8 @@ const { t } = useI18n()
 <style lang="scss" scoped>
 .box {
   @apply h-100px w-150px flex items-center justify-center rounded-lg bg-gray-300 dark:bg-gray-700;
+}
+.box2 {
+  @apply w-600px flex flex-col items-center justify-center rounded-lg border border-red border-style-dashed p-2;
 }
 </style>

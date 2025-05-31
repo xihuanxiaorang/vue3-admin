@@ -1,4 +1,8 @@
 {
+  "common": {
+    "startDate": "开始日期",
+    "endDate": "结束日期"
+  },
   "message": {
     "switchLanguageSuccess": "切换语言成功"
   },

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import Language from '@/enums/Language'
-import { useAppStore } from '@/stores/modules/app'
+import { useAppStore } from '@/stores'
 
 const { iconSize = 25 } = defineProps<{ iconSize?: number }>()
 
