@@ -1,3 +1,4 @@
+import { setupI18n } from '@/locales'
 import { setupRouter } from '@/router'
 import { setupPinia } from '@/stores'
 import type { App } from 'vue'
@@ -15,4 +16,8 @@ export function setupPlugins(app: App) {
    * 状态管理(store)
    */
   setupPinia(app)
+  /**
+   * 国际化(i18n)
+   */
+  setupI18n(app)
 }

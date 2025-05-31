@@ -51,5 +51,3 @@ const router = createRouter({
 export function setupRouter(app: App) {
   app.use(router)
 }
-
-export default router

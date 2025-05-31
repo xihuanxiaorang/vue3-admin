@@ -44,6 +44,10 @@
     <el-input-number v-model="count" :min="1" :max="10" @change="handleChange" />
   </div>
 
+  <div class="box mb-4">
+    <span class="text-xl text-red">{{ t('hello') }}</span>
+  </div>
+
   <div class="grid grid-cols-2 mb-4 h-100 gap-6">
     <div ref="barChart"></div>
     <div ref="pieChart"></div>
@@ -53,6 +57,7 @@
 <script setup lang="ts">
 import { useCounterStore } from '@/stores'
 import iconNames from 'virtual:svg-icons-names'
+import { useI18n } from 'vue-i18n'
 
 const { count } = storeToRefs(useCounterStore())
 const handleChange = (value: number | undefined) => {
@@ -188,6 +193,8 @@ const pieChartOption = ref<ECOption>({
   ],
 })
 useECharts(pieChart, pieChartOption)
+
+const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>
