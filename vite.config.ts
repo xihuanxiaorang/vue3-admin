@@ -27,8 +27,7 @@ export default defineConfig(({ mode }) => {
         // 自定义解析器
         resolvers: [
           // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
-          // 使用 SaSS 源文件的方式引入组件样式，以便通过 SCSS 变量覆盖实现主题定制
-          ElementPlusResolver({ importStyle: 'sass' }),
+          ElementPlusResolver(),
           // 自动导入图标组件
           IconsResolver(),
         ],
@@ -40,8 +39,7 @@ export default defineConfig(({ mode }) => {
       Components({
         resolvers: [
           // 自动注册 Element Plus 组件
-          // 使用 SaSS 源文件的方式引入组件样式，以便通过 SCSS 变量覆盖实现主题定制
-          ElementPlusResolver({ importStyle: 'sass' }),
+          ElementPlusResolver(),
           // 自动注册图标组件
           IconsResolver({
             // 限定启用指定图标集（可选）
@@ -79,7 +77,7 @@ export default defineConfig(({ mode }) => {
       preprocessorOptions: {
         scss: {
           // 自动注入变量，无需在每个文件中单独引入
-          additionalData: `@use "@/styles/variables.scss" as *;@use "@/styles/element/index.scss" as *;`,
+          additionalData: `@use "@/styles/variables.scss" as *;`,
         },
       },
     },

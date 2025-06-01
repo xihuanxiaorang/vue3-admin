@@ -1,0 +1,9 @@
+@use 'element-plus/theme-chalk/dark/css-vars.css';
+
+:root {
+  --el-color-primary: #ff4c20;
+}
+
+html.dark {
+  --el-color-primary: #67c23a;
+}
