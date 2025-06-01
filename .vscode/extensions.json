@@ -6,6 +6,7 @@
     "esbenp.prettier-vscode",
     "editorconfig.editorconfig",
     "antfu.unocss",
-    "antfu.iconify"
+    "antfu.iconify",
+    "lokalise.i18n-ally"
   ]
 }
