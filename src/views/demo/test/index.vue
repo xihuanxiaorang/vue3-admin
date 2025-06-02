@@ -67,6 +67,18 @@
     />
   </div>
 
+  <div class="mb-4 w-1/2 rounded-md bg-[var(--el-bg-color)] p-5">
+    <transition
+      enter-active-class="animate__animated animate__bounceInLeft"
+      leave-active-class="animate__animated animate__bounceOutLeft"
+    >
+      <h1 v-show="visible" class="text-5xl text-orange-600 font-bold dark:text-blue-300">
+        An animated element
+      </h1>
+    </transition>
+    <el-button class="mt-2" type="primary" @click="visible = !visible"> 显示/隐藏 </el-button>
+  </div>
+
   <div class="grid grid-cols-2 mb-4 h-100 gap-6">
     <div ref="barChart"></div>
     <div ref="pieChart"></div>
@@ -214,6 +226,8 @@ const pieChartOption = ref<ECOption>({
 useECharts(pieChart, pieChartOption)
 
 const { t } = useI18n()
+
+const visible = ref(false)
 </script>
 
 <style lang="scss" scoped>

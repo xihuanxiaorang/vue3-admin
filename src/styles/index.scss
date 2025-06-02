@@ -1,5 +1,6 @@
 @use 'normalize.css/normalize.css';
 @use './element.scss';
+@use 'animate.css';
 
 :root {
   --sidebar-width: #{$sidebarWidth};
