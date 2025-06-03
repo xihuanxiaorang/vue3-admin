@@ -1,7 +1,9 @@
 <template>
-  <div class="h-full flex items-center justify-between px-4">
-    <div>顶部导航栏</div>
-    <div class="flex flex-1 items-center justify-end gap-4">
+  <div class="h-full w-full flex items-center justify-between">
+    <div class="flex items-center">
+      <Hamburger />
+    </div>
+    <div class="flex items-center justify-center gap-3">
       <DarkModeSelect />
       <FullScreen />
       <LangSelect />

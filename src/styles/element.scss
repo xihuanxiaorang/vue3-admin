@@ -1,9 +1,13 @@
 @use 'element-plus/theme-chalk/dark/css-vars.css';
 
 :root {
-  --el-color-primary: #ff4c20;
+  --el-menu-bg-color: #304156; // 菜单背景颜色
+  --el-menu-text-color: #bfcbd9; // 菜单文字颜色
+  --el-menu-hover-bg-color: #263445; // 菜单悬停背景色
 }
 
 html.dark {
-  --el-color-primary: #67c23a;
+  --el-menu-bg-color: var(--el-bg-color-overlay); // 菜单背景颜色
+  --el-menu-text-color: #fff; // 菜单文字颜色
+  --el-menu-hover-bg-color: rgb(0 0 0 / 20%); // 菜单悬停背景色
 }

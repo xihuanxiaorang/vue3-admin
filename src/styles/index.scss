@@ -4,8 +4,14 @@
 
 :root {
   --sidebar-width: #{$sidebarWidth};
+  --sidebar-width-collapse: #{$sidebarWidthCollapse};
   --navbar-height: #{$navbarHeight};
   --tags-view-height: #{$tagsViewHeight};
+  --sidebar-logo-background: #{$sidebarLogoBackgroundLight};
+}
+
+html.dark {
+  --sidebar-logo-background: #{$sidebarLogoBackgroundDark};
 }
 
 ::view-transition-old(root),

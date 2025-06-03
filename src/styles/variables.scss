@@ -1,3 +1,6 @@
-$sidebarWidth: 210px;
-$navbarHeight: 50px;
-$tagsViewHeight: 34px;
+$sidebarWidth: 210px; // 侧边栏宽度
+$sidebarWidthCollapse: 64px; // 侧边栏折叠宽度
+$navbarHeight: 50px; // 顶部导航栏高度
+$tagsViewHeight: 34px; // 标签栏高度
+$sidebarLogoBackgroundLight: #2d3748; // 侧边栏Logo背景色（明亮主题）
+$sidebarLogoBackgroundDark: rgb(0 0 0 / 20%); // 侧边栏Logo背景色（暗黑主题）
