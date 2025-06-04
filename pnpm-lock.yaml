@@ -26,6 +26,9 @@ importers:
       normalize.css:
         specifier: ^8.0.1
         version: 8.0.1
+      path-browserify:
+        specifier: ^1.0.1
+        version: 1.0.1
       pinia:
         specifier: ^3.0.2
         version: 3.0.2(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
@@ -51,6 +54,9 @@ importers:
       '@iconify-json/mdi':
         specifier: ^1.2.3
         version: 1.2.3
+      '@types/path-browserify':
+        specifier: ^1.0.3
+        version: 1.0.3
       '@unocss/eslint-config':
         specifier: ^66.1.0
         version: 66.1.0(eslint@9.25.1(jiti@2.4.2))(typescript@5.7.3)
@@ -738,6 +744,9 @@ packages:
 
   '@types/node@22.15.3':
     resolution: {integrity: sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==}
+
+  '@types/path-browserify@1.0.3':
+    resolution: {integrity: sha512-ZmHivEbNCBtAfcrFeBCiTjdIc2dey0l7oCGNGpSuRTy8jP6UVND7oUowlvDujBy8r2Hoa8bfFUOCiPWfmtkfxw==}
 
   '@types/svgo@2.6.4':
     resolution: {integrity: sha512-l4cmyPEckf8moNYHdJ+4wkHvFxjyW6ulm9l4YGaOxeyBWPhBOT0gvni1InpFPdzx1dKf/2s62qGITwxNWnPQng==}
@@ -4011,6 +4020,8 @@ snapshots:
   '@types/node@22.15.3':
     dependencies:
       undici-types: 6.21.0
+
+  '@types/path-browserify@1.0.3': {}
 
   '@types/svgo@2.6.4':
     dependencies:

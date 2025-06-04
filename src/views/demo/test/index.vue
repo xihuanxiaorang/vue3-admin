@@ -76,7 +76,9 @@
         An animated element
       </h1>
     </transition>
-    <el-button class="mt-2" type="primary" @click="visible = !visible"> 显示/隐藏 </el-button>
+    <el-button class="mt-2" type="primary" @click="visible = !visible">{{
+      visible ? '隐藏' : '显示'
+    }}</el-button>
   </div>
 
   <div class="grid grid-cols-2 mb-4 h-100 gap-6">

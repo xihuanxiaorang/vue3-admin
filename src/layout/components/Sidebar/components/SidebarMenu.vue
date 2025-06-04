@@ -6,23 +6,19 @@
     class="border-r-0"
     router
   >
-    <el-menu-item index="/dashboard">
-      <el-icon>
-        <IMdiViewDashboard />
-      </el-icon>
-      <template #title>Dashboard</template>
-    </el-menu-item>
-    <el-menu-item index="/demo/test">
-      <el-icon>
-        <IMdiSlideshow />
-      </el-icon>
-      <template #title>测试页面</template>
-    </el-menu-item>
+    <SidebarMenuItem
+      v-for="item in routes"
+      :key="item.path"
+      :item="item"
+      :base-path="resolvePath(item.path, '')"
+    />
   </el-menu>
 </template>
 
 <script setup lang="ts">
 import { useAppStore } from '@/stores'
+import { routes } from '@/router'
+import { resolvePath } from '@/utils'
 
 const appStore = useAppStore()
 
