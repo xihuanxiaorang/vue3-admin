@@ -1,16 +1,15 @@
 <template>
   <template v-if="isVisible">
-    <el-menu-item
-      v-if="isRenderedAsMenuItem"
-      :index="resolvePath(targetMenuItem?.path || '', basePath)"
-    >
-      <el-icon>
-        <svg-icon :icon-name="targetMenuItem?.meta?.icon || 'menu'" />
-      </el-icon>
-      <template #title>
-        {{ targetMenuItem?.meta?.title }}
-      </template>
-    </el-menu-item>
+    <AppLink v-if="isRenderedAsMenuItem" :to="resolvePath(targetMenuItem?.path || '', basePath)">
+      <el-menu-item :index="resolvePath(targetMenuItem?.path || '', basePath)">
+        <el-icon>
+          <svg-icon :icon-name="targetMenuItem?.meta?.icon || 'menu'" />
+        </el-icon>
+        <template #title>
+          {{ targetMenuItem?.meta?.title }}
+        </template>
+      </el-menu-item>
+    </AppLink>
     <el-sub-menu v-else :index="resolvePath(item.path, basePath)">
       <template #title>
         <el-icon>

@@ -4,7 +4,6 @@
     :collapse="appStore.isSidebarCollapsed"
     :collapse-transition="false"
     class="border-r-0"
-    router
   >
     <SidebarMenuItem
       v-for="item in routes"

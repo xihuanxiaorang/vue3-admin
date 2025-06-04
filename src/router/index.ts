@@ -59,6 +59,27 @@ const dynamicRoutes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: '/doc',
+    name: 'Doc',
+    component: Layout,
+    meta: {
+      title: '平台文档',
+      icon: 'document',
+      alwaysShow: true,
+    },
+    children: [
+      {
+        path: 'https://docs.xiaorang.fun',
+        name: 'ExternalDoc',
+        redirect: 'https://docs.xiaorang.fun',
+        meta: {
+          title: '平台文档(外链)',
+          icon: 'link',
+        },
+      },
+    ],
+  },
+  {
     path: '/multi-level',
     name: 'MultiLevel',
     component: Layout,

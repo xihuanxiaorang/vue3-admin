@@ -5,7 +5,7 @@
       <RouterLink
         :key="+appStore.isSidebarCollapsed"
         to="/"
-        class="h-full w-full flex items-center justify-center no-underline"
+        class="h-full w-full flex items-center justify-center"
       >
         <img alt="logo" src="@/assets/images/logo.png" class="h-5 w-5" />
         <span
