@@ -8,7 +8,6 @@
 import { isExternal } from '@/utils/validate'
 
 defineOptions({
-  name: 'AppLink',
   inheritAttrs: false,
 })
 

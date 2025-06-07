@@ -1,7 +1,8 @@
 <template>
   <div class="h-full w-full flex items-center justify-between">
-    <div class="flex items-center">
+    <div class="flex items-center gap-10">
       <Hamburger />
+      <Breadcrumb />
     </div>
     <div class="flex items-center justify-center gap-3">
       <DarkModeSelect />

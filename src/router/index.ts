@@ -83,18 +83,21 @@ const dynamicRoutes: RouteRecordRaw[] = [
     path: '/multi-level',
     name: 'MultiLevel',
     component: Layout,
+    redirect: '/multi-level/multi-level1',
     meta: { title: '多级菜单', icon: 'cascader' },
     children: [
       {
         path: 'multi-level1',
         name: 'MultiLevel1',
         component: () => import('@/views/demo/multi-level/level1.vue'),
+        redirect: '/multi-level/multi-level1/multi-level2',
         meta: { title: '菜单一级', icon: '' },
         children: [
           {
             path: 'multi-level2',
-            component: () => import('@/views/demo/multi-level/children/level2.vue'),
             name: 'MultiLevel2',
+            component: () => import('@/views/demo/multi-level/children/level2.vue'),
+            redirect: '/multi-level/multi-level1/multi-level2/multi-level3-1',
             meta: { title: '菜单二级', icon: '' },
             children: [
               {
