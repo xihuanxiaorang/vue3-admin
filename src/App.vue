@@ -1,5 +1,5 @@
 <template>
-  <el-config-provider :locale="locale">
+  <el-config-provider :locale="locale" :size="size">
     <router-view></router-view>
   </el-config-provider>
 </template>
@@ -10,6 +10,6 @@ import zhCN from 'element-plus/es/locale/lang/zh-cn'
 import { useAppStore } from './stores'
 import Language from './enums/Language'
 
-const { language } = storeToRefs(useAppStore())
+const { language, size } = storeToRefs(useAppStore())
 const locale = computed(() => (language.value === Language.ZH_CN ? zhCN : enUS))
 </script>

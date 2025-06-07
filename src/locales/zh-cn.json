@@ -4,7 +4,8 @@
     "endDate": "结束日期"
   },
   "message": {
-    "switchLanguageSuccess": "切换语言成功"
+    "switchLanguageSuccess": "切换语言成功",
+    "switchSizeSuccess": "切换布局大小成功"
   },
   "hello": "您好"
 }

@@ -4,9 +4,10 @@
       <Hamburger />
       <Breadcrumb />
     </div>
-    <div class="flex items-center justify-center gap-3">
+    <div class="flex items-center justify-center gap-4">
       <DarkModeSelect />
       <FullScreen />
+      <SizeSelect />
       <LangSelect />
       <el-avatar v-loading="isLoading" :src="userInfo?.avatar">
         <IMdiUser class="text-size-lg" />

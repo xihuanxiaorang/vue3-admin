@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Language from '@/enums/Language'
+import ComponentSize from '@/enums/ComponentSize'
 import { useAppStore } from '@/stores'
 import { useI18n } from 'vue-i18n'
 
@@ -7,17 +7,17 @@ const { iconSize = 25 } = defineProps<{ iconSize?: number }>()
 
 const appStore = useAppStore()
 
-const { locale, t } = useI18n()
+const { t } = useI18n()
 
-const langOptions = [
-  { label: '中文', value: Language.ZH_CN },
-  { label: 'English', value: Language.EN_US },
+const sizeOptions = [
+  { label: 'Default', value: ComponentSize.DEFAULT },
+  { label: 'Small', value: ComponentSize.SMALL },
+  { label: 'Large', value: ComponentSize.LARGE },
 ]
 
-const handleLanguageChange = (lang: string) => {
-  locale.value = lang
-  appStore.changeLanguage(lang as Language)
-  ElMessage.success(t('message.switchLanguageSuccess'))
+const handleSizeChange = (size: string) => {
+  appStore.changeSize(size as ComponentSize)
+  ElMessage.success(t('message.switchSizeSuccess'))
 }
 </script>
 
@@ -25,18 +25,18 @@ const handleLanguageChange = (lang: string) => {
   <el-dropdown
     trigger="click"
     class="cursor-pointer text-black dark:text-white"
-    @command="handleLanguageChange"
+    @command="handleSizeChange"
   >
     <el-icon :size="iconSize">
-      <IMdiLanguage />
+      <IMdiFormatSize />
     </el-icon>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item
-          v-for="opt in langOptions"
+          v-for="opt in sizeOptions"
           :key="opt.value"
           :command="opt.value"
-          :disabled="opt.value === appStore.language"
+          :disabled="opt.value === appStore.size"
         >
           {{ opt.label }}
         </el-dropdown-item>

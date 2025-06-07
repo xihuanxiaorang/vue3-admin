@@ -4,7 +4,8 @@
     "endDate": "End Date"
   },
   "message": {
-    "switchLanguageSuccess": "switch language success"
+    "switchLanguageSuccess": "switch language success",
+    "switchSizeSuccess": "Switch Layout Size Success"
   },
   "hello": "hello"
 }
