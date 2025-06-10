@@ -6,7 +6,7 @@ declare module 'vue-router' {
   interface RouteMeta {
     /**
      * 菜单标题，用于侧边栏、面包屑等显示
-     * @example '首页
+     * @example '首页'
      */
     title?: string
     /**
@@ -22,7 +22,7 @@ declare module 'vue-router' {
      */
     hidden?: boolean
     /**
-     * 有且仅有一个子菜单时，是否始终显示该菜单（作为目录存在）
+     * 当有且仅有一个子菜单时，是否始终显示该菜单（作为目录存在）
      * @example true 始终显示
      * @example false 不始终显示
      * @default false
@@ -35,5 +35,12 @@ declare module 'vue-router' {
      * @default false
      */
     breadcrumb?: boolean
+    /**
+     * 是否固定在标签栏导航中
+     * @example true 固定
+     * @example false 不固定
+     * @default false
+     */
+    affix?: boolean
   }
 }

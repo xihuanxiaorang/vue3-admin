@@ -11,8 +11,11 @@
       <Sidebar />
     </el-aside>
     <el-container>
-      <el-header class="h-[var(--navbar-height)] bg-[var(--el-bg-color)]">
-        <Navbar />
+      <el-header
+        class="h-[calc(var(--navbar-height)+var(--tags-view-height))] bg-[var(--el-bg-color)] px-0"
+      >
+        <Navbar class="h-[var(--navbar-height)] px-5" />
+        <TagsView class="h-[var(--tags-view-height)] px-5" />
       </el-header>
       <el-main class="bg-[var(--el-bg-color-page)]">
         <RouterView />

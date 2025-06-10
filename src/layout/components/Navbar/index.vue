@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full w-full flex items-center justify-between">
+  <div class="w-full flex items-center justify-between">
     <div class="flex items-center gap-10">
       <Hamburger />
       <Breadcrumb />

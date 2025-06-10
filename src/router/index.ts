@@ -18,6 +18,7 @@ const constantRoutes: RouteRecordRaw[] = [
         meta: {
           title: '首页',
           icon: 'home',
+          affix: true,
         },
       },
     ],
