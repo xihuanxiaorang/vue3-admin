@@ -133,7 +133,7 @@ const dynamicRoutes: RouteRecordRaw[] = [
         path: 'test',
         name: 'Test',
         component: () => import('@/views/demo/test/index.vue'),
-        meta: { title: '测试页面', icon: '' },
+        meta: { title: '测试页面', icon: '', keepAlive: true },
       },
     ],
   },

@@ -44,6 +44,10 @@
     <el-input-number v-model="count" :min="1" :max="10" @change="handleChange" />
   </div>
 
+  <div class="mb4">
+    <el-input v-model="input" style="width: 240px" placeholder="Please Input" />
+  </div>
+
   <div class="box mb-4">
     <span class="text-xl text-red">{{ t('hello') }}</span>
   </div>
@@ -91,6 +95,10 @@
 import { useCounterStore } from '@/stores'
 import iconNames from 'virtual:svg-icons-names'
 import { useI18n } from 'vue-i18n'
+
+defineOptions({
+  name: 'Test',
+})
 
 const { count } = storeToRefs(useCounterStore())
 const handleChange = (value: number | undefined) => {
@@ -230,6 +238,8 @@ useECharts(pieChart, pieChartOption)
 const { t } = useI18n()
 
 const visible = ref(false)
+
+const input = ref('')
 </script>
 
 <style lang="scss" scoped>

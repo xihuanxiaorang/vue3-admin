@@ -18,7 +18,7 @@
         <TagsView class="h-[var(--tags-view-height)] px-5" />
       </el-header>
       <el-main class="bg-[var(--el-bg-color-page)]">
-        <RouterView />
+        <AppMain />
       </el-main>
     </el-container>
   </el-container>

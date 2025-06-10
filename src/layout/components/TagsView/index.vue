@@ -40,7 +40,7 @@ onMounted(() => {
  */
 const initAffixTags = () => {
   const affixTags = filterAffixTags(routes)
-  affixTags.forEach((tag) => tagsViewStore.addVisitedView(tag))
+  affixTags.forEach((tag) => tagsViewStore.addView(tag))
 }
 
 /**
@@ -59,6 +59,7 @@ const filterAffixTags = (routes: RouteRecordRaw[], basePath = '/') => {
         fullPath: tagPath,
         icon: route.meta?.icon,
         affix: true,
+        keepAlive: route.meta.keepAlive,
       })
     }
     if (route.children) {
@@ -76,13 +77,14 @@ const filterAffixTags = (routes: RouteRecordRaw[], basePath = '/') => {
  */
 const addTag = () => {
   if (!route.meta.title) return
-  tagsViewStore.addVisitedView({
+  tagsViewStore.addView({
     name: route.name as string,
     title: route.meta.title,
     path: route.path,
     fullPath: route.fullPath,
     icon: route.meta.icon,
     affix: route.meta.affix,
+    keepAlive: route.meta.keepAlive,
     query: route.query,
   })
 }
@@ -153,7 +155,7 @@ const isAffix = (tag: TagView) => {
  * @param tag 标签
  */
 const closeSelectedTag = (tag: TagView) => {
-  tagsViewStore.deleteVisitedView(tag)
+  tagsViewStore.deleteView(tag)
   if (isActive(tag)) {
     toLastView()
   }

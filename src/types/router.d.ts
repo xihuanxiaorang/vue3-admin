@@ -42,5 +42,12 @@ declare module 'vue-router' {
      * @default false
      */
     affix?: boolean
+    /**
+     * 是否开启缓存
+     * @example true 开启
+     * @example false 关闭
+     * @default false
+     */
+    keepAlive?: boolean
   }
 }
