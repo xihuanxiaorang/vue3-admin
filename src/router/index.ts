@@ -7,6 +7,18 @@ import type { App } from 'vue'
  */
 const constantRoutes: RouteRecordRaw[] = [
   {
+    path: '/redirect',
+    component: Layout,
+    meta: { hidden: true },
+    children: [
+      // 路由重定向组件，用于解决标签页刷新问题
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@/views/redirect/index.vue'),
+      },
+    ],
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',

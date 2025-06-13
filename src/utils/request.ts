@@ -3,24 +3,6 @@ import { ACCESS_TOKEN } from './constants'
 import ResultCode from '@/enums/ResultCode'
 
 /**
- * 统一响应结构体
- */
-interface Result<T = any> {
-  /**
-   * 响应码
-   */
-  code: string
-  /**
-   * 响应消息
-   */
-  message: string
-  /**
-   * 响应数据
-   */
-  data: T
-}
-
-/**
  * 错误处理映射表
  */
 const ERROR_HANDLERS: {

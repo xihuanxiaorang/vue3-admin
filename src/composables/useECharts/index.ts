@@ -48,7 +48,7 @@ export function useECharts(
     { maxWait: 800 },
   )
 
-  const stopResizeListener = useEventListener(window, 'resize', resize)
+  useEventListener(window, 'resize', resize)
 
   onMounted(() => {
     if (init()) {
@@ -57,7 +57,6 @@ export function useECharts(
   })
 
   onUnmounted(() => {
-    stopResizeListener()
     chart.value?.dispose()
     chart.value = null
   })

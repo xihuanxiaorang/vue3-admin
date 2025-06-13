@@ -48,8 +48,47 @@
     <el-input v-model="input" style="width: 240px" placeholder="Please Input" />
   </div>
 
-  <div class="box mb-4">
+  <div class="box1 mb-4">
     <span class="text-xl text-red">{{ t('hello') }}</span>
+  </div>
+
+  <div class="mb4 flex items-center gap-10">
+    <ContextMenu
+      :menu-list="[
+        { label: '添加' },
+        { label: '编辑' },
+        { label: '删除' },
+        { label: '查看' },
+        { label: '复制' },
+      ]"
+      class="box3"
+      @select="(item) => console.log(item)"
+    >
+      <ContextMenu
+        :menu-list="[
+          { label: '员工' },
+          { label: '部门' },
+          { label: '角色' },
+          { label: '权限' },
+          { label: '菜单' },
+        ]"
+        class="box4"
+        @select="(item) => console.log(item)"
+      >
+        <ContextMenu
+          :menu-list="[
+            { label: '菜单1' },
+            { label: '菜单2' },
+            { label: '菜单3' },
+            { label: '菜单4' },
+          ]"
+          class="box5"
+          @select="(item) => console.log(item)"
+        >
+          <span>Right Click</span>
+        </ContextMenu>
+      </ContextMenu>
+    </ContextMenu>
   </div>
 
   <div class="box2 mb-4">
@@ -244,9 +283,31 @@ const input = ref('')
 
 <style lang="scss" scoped>
 .box {
-  @apply h-100px w-150px flex items-center justify-center rounded-lg bg-gray-300 dark:bg-gray-700;
+  @apply flex items-center justify-center rounded-lg;
 }
+
+.box1 {
+  @extend .box;
+  @apply h-100px w-150px bg-gray-300 dark:bg-gray-700;
+}
+
 .box2 {
-  @apply w-600px flex flex-col items-center justify-center rounded-lg border border-red border-style-dashed p-2;
+  @extend .box;
+  @apply w-600px flex-col border border-red border-style-dashed p-2;
+}
+
+.box3 {
+  @extend .box;
+  @apply h-300px w-400px bg-[var(--el-color-success-light-5)] dark:bg-[var(--el-color-success-dark-2)];
+}
+
+.box4 {
+  @extend .box;
+  @apply h-200px w-300px bg-[var(--el-color-warning-light-5)] dark:bg-[var(--el-color-warning-dark-2)];
+}
+
+.box5 {
+  @extend .box;
+  @apply h-100px w-200px bg-[var(--el-color-danger-light-5)] dark:bg-[var(--el-color-danger-dark-2)];
 }
 </style>

@@ -78,5 +78,12 @@ const handleClick = (route: RouteLocationMatched) => {
 /**
  * 监听路由变化实时更新面包屑列表（立即执行初始化）
  */
-watch(() => route.path, getBreadcrumbList, { immediate: true })
+watch(
+  () => route.path,
+  (path) => {
+    if (path.startsWith('/redirect')) return
+    getBreadcrumbList()
+  },
+  { immediate: true },
+)
 </script>

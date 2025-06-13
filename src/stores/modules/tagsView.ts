@@ -1,43 +1,3 @@
-import type { LocationQuery } from 'vue-router'
-
-/**
- * 标签对象
- */
-export interface TagView {
-  /**
-   * 标签名称
-   */
-  name: string
-  /**
-   * 标签标题
-   */
-  title: string
-  /**
-   * 标签路由路径
-   */
-  path: string
-  /**
-   * 标签完整路由路径
-   */
-  fullPath: string
-  /**
-   * 标签图标
-   */
-  icon?: string
-  /**
-   * 标签是否固定
-   */
-  affix?: boolean
-  /**
-   * 是否开启缓存
-   */
-  keepAlive?: boolean
-  /**
-   * 路由查询参数
-   */
-  query?: LocationQuery
-}
-
 export const useTagsViewStore = defineStore('tagsView', () => {
   /**
    * 已访问列表
@@ -114,10 +74,122 @@ export const useTagsViewStore = defineStore('tagsView', () => {
    * 删除已访问列表和缓存列表中的指定标签
    * @param view 待删除的标签
    */
-  const deleteView = (view: TagView) => {
-    deleteVisitedView(view)
-    deleteCachedView(view)
+  const deleteView = (
+    view: TagView,
+  ): Promise<{
+    visitedViews: TagView[]
+    cachedViews: string[]
+  }> => {
+    return new Promise((resolve) => {
+      deleteVisitedView(view)
+      deleteCachedView(view)
+      resolve({
+        visitedViews: [...visitedViews.value],
+        cachedViews: [...cachedViews.value],
+      })
+    })
   }
 
-  return { visitedViews, cachedViews, addView, deleteView }
+  /**
+   * 删除已访问列表中除指定标签和固定标签之外的其他标签
+   * @param view 指定标签
+   */
+  const deleteOtherVisitedViews = (view: TagView) => {
+    visitedViews.value = visitedViews.value.filter((v) => v.affix || v.path === view.path)
+  }
+
+  /**
+   * 删除缓存列表中除指定标签之外的其他标签
+   * @param view 指定标签
+   */
+  const deleteOtherCachedViews = (view: TagView) => {
+    const index = cachedViews.value.indexOf(view.name)
+    if (index > -1) {
+      cachedViews.value = cachedViews.value.slice(index, index + 1)
+    } else {
+      cachedViews.value = []
+    }
+  }
+
+  /**
+   * 删除已访问列表和缓存列表中除指定标签和固定标签之外的其他标签
+   * @param view 指定标签
+   */
+  const deleteOtherViews = (view: TagView) => {
+    deleteOtherVisitedViews(view)
+    deleteOtherCachedViews(view)
+  }
+
+  /**
+   * 删除已访问列表和缓存列表中指定标签之前除固定标签之外的其他标签
+   * @param view 指定标签
+   */
+  const deleteLeftViews = (view: TagView): Promise<{ visitedViews: TagView[] }> => {
+    return new Promise((resolve) => {
+      const currentIndex = visitedViews.value.findIndex((item) => item.path === view.path)
+      if (currentIndex === -1) return
+      visitedViews.value = visitedViews.value.filter((item, index) => {
+        if (index >= currentIndex || item.affix) return true
+        const cachedIndex = cachedViews.value.indexOf(item.name)
+        if (cachedIndex > -1) {
+          cachedViews.value.splice(cachedIndex, 1)
+        }
+        return false
+      })
+      resolve({
+        visitedViews: [...visitedViews.value],
+      })
+    })
+  }
+
+  /**
+   * 删除已访问列表和缓存列表中指定标签之后除固定标签之外的其他标签
+   * @param view 指定标签
+   */
+  const deleteRightViews = (view: TagView): Promise<{ visitedViews: TagView[] }> => {
+    return new Promise((resolve) => {
+      const currentIndex = visitedViews.value.findIndex((item) => item.path === view.path)
+      if (currentIndex === -1) return
+      visitedViews.value = visitedViews.value.filter((item, index) => {
+        if (index <= currentIndex || item.affix) return true
+        const cachedIndex = cachedViews.value.indexOf(item.name)
+        if (cachedIndex > -1) {
+          cachedViews.value.splice(cachedIndex, 1)
+        }
+        return false
+      })
+      resolve({
+        visitedViews: [...visitedViews.value],
+      })
+    })
+  }
+
+  /**
+   * 删除已访问列表中除固定标签之外的所有标签和缓存列表中的所有标签
+   */
+  const deleteAllViews = (): Promise<{
+    visitedViews: TagView[]
+    cachedViews: string[]
+  }> => {
+    return new Promise((resolve) => {
+      visitedViews.value = visitedViews.value.filter((item) => item.affix)
+      cachedViews.value = []
+      resolve({
+        visitedViews: [...visitedViews.value],
+        cachedViews: [...cachedViews.value],
+      })
+    })
+  }
+
+  return {
+    visitedViews,
+    cachedViews,
+    addView,
+    deleteCachedView,
+    deleteView,
+    deleteOtherViews,
+    deleteLeftViews,
+    deleteRightViews,
+    deleteAllViews,
+  }
 })

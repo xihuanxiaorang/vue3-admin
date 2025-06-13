@@ -1,25 +1,34 @@
 <template>
   <div class="tags-view-container">
     <el-scrollbar ref="scrollbarRef" class="srollbar-container" @wheel="handleScroll">
-      <RouterLink
+      <ContextMenu
         v-for="tag in tagsViewStore.visitedViews"
         :key="tag.fullPath"
-        :to="{ path: tag.path, query: tag.query }"
-        :class="{ active: isActive(tag) }"
-        class="tag-item"
-        @click.middle="!isAffix(tag) && closeSelectedTag(tag)"
+        :menu-list="getContextMenuList(tag)"
+        class="ml-5px mt-4px inline-block first-of-type:ml-15px last-of-type:mr-15px"
+        @select="(item) => console.log(item, tag)"
       >
-        <span class="tag-text">{{ tag.title }}</span>
-        <span v-if="!isAffix(tag)" class="close-icon" @click.prevent.stop="closeSelectedTag(tag)">
-          ×
-        </span>
-      </RouterLink>
+        <RouterLink
+          :to="{ path: tag.path, query: tag.query }"
+          :class="{ active: isActive(tag) }"
+          class="tag-item"
+          @click.middle="!isAffix(tag) && closeSelectedTag(tag)"
+        >
+          <span class="tag-text">{{ tag.title }}</span>
+          <span v-if="!isAffix(tag)" class="close-icon" @click.prevent.stop="closeSelectedTag(tag)">
+            ×
+          </span>
+        </RouterLink>
+        <template #icon="{ menu }">
+          <SvgIcon v-if="menu.icon" :icon-name="menu.icon"></SvgIcon>
+        </template>
+      </ContextMenu>
     </el-scrollbar>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useTagsViewStore, type TagView } from '@/stores'
+import { useTagsViewStore } from '@/stores'
 import { routes } from '@/router'
 import type { RouteRecordRaw } from 'vue-router'
 import { resolve } from 'path-browserify'
@@ -147,30 +156,131 @@ const isActive = (tag: TagView) => {
  * @param tag 标签
  */
 const isAffix = (tag: TagView) => {
-  return tag.affix
+  return tag.affix ?? false
 }
 
 /**
  * 关闭选中标签
- * @param tag 标签
+ * @param tag 当前选中的标签
  */
-const closeSelectedTag = (tag: TagView) => {
-  tagsViewStore.deleteView(tag)
+const closeSelectedTag = async (tag: TagView) => {
+  const { visitedViews } = await tagsViewStore.deleteView(tag)
   if (isActive(tag)) {
-    toLastView()
+    toLastView(visitedViews, tag)
   }
 }
 
 /**
  * 跳转到最后一个标签
+ * @param visitedViews 已访问的标签列表
+ * @param view 标签
  */
-const toLastView = () => {
-  const lastView = tagsViewStore.visitedViews.slice(-1)[0]
+const toLastView = (visitedViews: TagView[], view?: TagView) => {
+  const lastView = visitedViews.slice(-1)[0]
   if (lastView && lastView.fullPath) {
     router.push(lastView.fullPath)
   } else {
-    router.push('/')
+    // now the default is to redirect to the home page if there is no tags-view,
+    // you can adjust it according to your needs.
+    if (view?.name === 'Dashboard') {
+      router.replace({ path: '/redirect' + view.fullPath })
+    } else {
+      router.push('/')
+    }
   }
+}
+
+/**
+ * 获取标签右键菜单项
+ * @param tag 标签
+ */
+const getContextMenuList = (tag: TagView): ContextMenuItem[] => {
+  return [
+    { label: '刷新', icon: 'refresh', onClick: () => refreshSelectedTag(tag) },
+    { label: '关闭', icon: 'close', hidden: isAffix(tag), onClick: () => closeSelectedTag(tag) },
+    { label: '关闭其他', icon: 'close-other', onClick: () => closeOtherTags(tag) },
+    {
+      label: '关闭左侧',
+      icon: 'close-left',
+      hidden: isFirstView(tag),
+      onClick: () => closeLeftTags(tag),
+    },
+    {
+      label: '关闭右侧',
+      icon: 'close-right',
+      hidden: isLastView(tag),
+      onClick: () => closeRightTags(tag),
+    },
+    { label: '关闭所有', icon: 'close-all', onClick: () => closeAllTags(tag) },
+  ]
+}
+
+/**
+ * 刷新选中的标签
+ * @param tag 当前选中的标签
+ */
+const refreshSelectedTag = (tag: TagView) => {
+  tagsViewStore.deleteCachedView(tag)
+  nextTick(() => {
+    router.replace({ path: '/redirect' + tag.fullPath })
+  })
+}
+
+/**
+ * 关闭其他标签
+ * @param tag 当前选中的标签
+ */
+const closeOtherTags = async (tag: TagView) => {
+  await router.push(tag)
+  tagsViewStore.deleteOtherViews(tag)
+  scrollToActiveTag()
+}
+
+/**
+ * 判断是否为第一个标签（首页或者第一个非首页标签）
+ * @param tag 当前选中的标签
+ */
+const isFirstView = (tag: TagView) => {
+  return tag.name === 'Dashboard' || tag.fullPath === tagsViewStore.visitedViews[1]?.fullPath
+}
+
+/**
+ * 关闭左侧标签
+ * @param tag 当前选中的标签
+ */
+const closeLeftTags = async (tag: TagView) => {
+  const { visitedViews } = await tagsViewStore.deleteLeftViews(tag)
+  if (!visitedViews.find((item) => item.path === route.path)) {
+    toLastView(visitedViews, tag)
+  }
+}
+
+/**
+ * 判断是否为最后一个标签
+ * @param tag 当前选中的标签
+ */
+const isLastView = (tag: TagView) => {
+  return tag.fullPath === tagsViewStore.visitedViews[tagsViewStore.visitedViews.length - 1].fullPath
+}
+
+/**
+ * 关闭右侧标签
+ * @param tag 当前选中的标签
+ */
+const closeRightTags = async (tag: TagView) => {
+  const { visitedViews } = await tagsViewStore.deleteRightViews(tag)
+  // 检查当前路由是否仍在剩余标签中：若不在，则跳转至最后一个标签
+  if (!visitedViews.find((item) => item.path === route.path)) {
+    toLastView(visitedViews)
+  }
+}
+
+/**
+ * 关闭所有标签
+ */
+const closeAllTags = async (tag: TagView) => {
+  const { visitedViews } = await tagsViewStore.deleteAllViews()
+  toLastView(visitedViews, tag)
 }
 </script>
 
@@ -183,11 +293,7 @@ const toLastView = () => {
   }
 
   .tag-item {
-    @apply relative inline-flex items-center h-26px px-8px mt-4px ml-5px text-12px leading-26px border border-[var(--el-border-color)] border-solid text-[var(--el-text-color-primary)] first-of-type:ml-15px last-of-type:mr-15px;
-
-    .tag-text {
-      @apply inline-block align-middle;
-    }
+    @apply inline-flex items-center h-26px px-8px text-12px leading-26px border border-[var(--el-border-color)] border-solid text-[var(--el-text-color-primary)];
 
     .close-icon {
       @apply inline-flex items-center justify-center w-16px h-16px ml-5px text-12px font-bold text-[var(--el-text-color-secondary)] rounded-1/2 transition-all duration-200 ease hover:text-[var(--el-color-white)] hover:bg-[var(--el-text-color-placeholder)];
